@@ -175,6 +175,7 @@ dependencies {
     implementation fg.deobf("curse.maven:aquaculture-60028:4074684")
     implementation fg.deobf("curse.maven:createaddition-439890:4767406")
     implementation fg.deobf("curse.maven:cccbridge-656214:4632363")
+    implementation fg.deobf("curse.maven:create-enchantment-industry-688768:4836885")
     implementation fg.deobf("curse.maven:cc-tweaked-282001:4630524")
     implementation fg.deobf("curse.maven:create-diesel-generators-869316:4861948")
     implementation fg.deobf("curse.maven:natures-aura-306626:4613484")
