@@ -131,14 +131,13 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
-
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven { url 'https://www.jitpack.io' }
 }
 
 dependencies {
@@ -148,7 +147,62 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
+    implementation fg.deobf("curse.maven:create-328085:4835190")
+    implementation fg.deobf("curse.maven:mekanism-268560:4644795")
+    implementation fg.deobf("curse.maven:pipez-443900:4713644")
+    implementation fg.deobf("curse.maven:apotheosis-313970:4730358")
+    implementation fg.deobf("curse.maven:geckolib-388172:4407241")
+    implementation fg.deobf("curse.maven:patchouli-306770:4031402")
+    implementation fg.deobf("curse.maven:curios-309927:4834339")
+    implementation fg.deobf("curse.maven:lucent-493280:4085139")
+    implementation fg.deobf("curse.maven:balm-531761:4751735")
+    implementation fg.deobf("curse.maven:chalk-533748:4827982")
+    implementation fg.deobf("curse.maven:titanium-287342:4786622")
+    implementation fg.deobf("curse.maven:industrial-foregoing-266515:4459182")
+    implementation fg.deobf("curse.maven:openblocks-elevator-250832:4859577")
+    implementation fg.deobf("curse.maven:framework-549225:4718247")
+    implementation fg.deobf("curse.maven:evilcraft-74610:4791844")
+    implementation fg.deobf("curse.maven:libx-412525:4052778")
+    implementation fg.deobf("curse.maven:forgiving-void-271009:3833506")
+    implementation fg.deobf("curse.maven:skyblock-builder-446691:4793674")
+    implementation fg.deobf("curse.maven:integrated-dynamics-236307:4791809")
+    implementation fg.deobf("curse.maven:common-capabilities-247007:4391413")
+    implementation fg.deobf("curse.maven:cyclops-core-232758:4808713")
+    implementation fg.deobf("curse.maven:immersive-engineering-231951:4780537")
+    implementation fg.deobf("curse.maven:primal-magick-545271:3984526")
+    implementation fg.deobf("curse.maven:backpacked-352835:4725664")
+    implementation fg.deobf("curse.maven:identity-391390:4399470")
+    implementation fg.deobf("curse.maven:aquaculture-60028:4074684")
+    implementation fg.deobf("curse.maven:createaddition-439890:4767406")
+    implementation fg.deobf("curse.maven:cccbridge-656214:4632363")
+    implementation fg.deobf("curse.maven:cc-tweaked-282001:4630524")
+    implementation fg.deobf("curse.maven:create-diesel-generators-869316:4861948")
+    implementation fg.deobf("curse.maven:natures-aura-306626:4613484")
+    implementation fg.deobf("curse.maven:time-in-a-bottle-standalone-445025:3879896")
+    implementation fg.deobf("curse.maven:sophisticated-storage-619320:4859702")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4859686")
+    implementation fg.deobf("curse.maven:scriptor-magicae-817436:4549561")
+    implementation fg.deobf("curse.maven:architectury-api-419699:4555749")
+    implementation fg.deobf("curse.maven:more-crafting-tables-for-forge-417365:4777739")
+    implementation fg.deobf("curse.maven:create-ender-transmission-737302:4785613")
+    implementation fg.deobf("curse.maven:touhou-little-maid-355044:4861330")
+    implementation fg.deobf("curse.maven:ore-tree-reborn-557194:4062292")
+    implementation fg.deobf("curse.maven:ftb-backups-2-622737:4834398")
+    implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:4598468")
+    implementation fg.deobf("curse.maven:ftb-chunks-forge-314906:4727833")
+    implementation fg.deobf("curse.maven:ftb-teams-forge-404468:4611938")
+    implementation fg.deobf("curse.maven:ftb-library-forge-404465:4661834")
+    implementation fg.deobf("curse.maven:item-filters-309674:4553326")
+    implementation fg.deobf("curse.maven:hostile-neural-networks-552574:4654510")
+    implementation fg.deobf("curse.maven:refined-cooking-543972:4110182")
+    implementation fg.deobf("curse.maven:cooking-for-blockheads-231484:4749423")
+    implementation fg.deobf("curse.maven:refined-storage-243076:4861827")
+    implementation fg.deobf("curse.maven:hardcore-torches-forge-576846:4676485")
+    implementation fg.deobf("curse.maven:create-mechanical-extruder-686100:4763416")
+    implementation fg.deobf("curse.maven:create-mechanical-spawner-821828:4763424")
+    implementation fg.deobf("curse.maven:sleeping-bags-384485:3920735")
+    implementation fg.deobf("curse.maven:mahou-tsukai-342543:4746888")
+    implementation fg.deobf("curse.maven:ars-nouveau-401955:4809720")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
