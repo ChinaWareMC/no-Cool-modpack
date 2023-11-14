@@ -66,7 +66,7 @@ allprojects {
             // Shadows
             url "https://maven.shadowsoffire.dev/releases"
             content {
-                includeGroup "dev.shadowsoffire"
+                includeGroup "shadows"
             }
         }
         maven {

@@ -30,6 +30,7 @@ dependencies {
     modImplementation "mezz.jei:jei-1.19.2-forge-api:11.6.0.1018"
     modCompileOnly "vazkii.patchouli:Patchouli:1.19.3-77:api"
     modRuntimeOnly "vazkii.patchouli:Patchouli:1.19.3-77"
+    modImplementation "curse.maven:sebastrnlib-709936:4431427"
     modImplementation "com.simibubi.create:create-1.19.2:0.5.1.f-46:slim"
     modImplementation "com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.10-20"
     modImplementation "com.tterrag.registrate:Registrate:MC1.19-1.1.5"
@@ -38,7 +39,7 @@ dependencies {
     modImplementation "shadows:Placebo:1.19.2-7.3.3"
 //    modImplementation "curse.maven:polylib-576589:4486955"
     modImplementation "net.creeperhost:polylib-forge:1900.0.2-build.39"
-    modImplementation "curse.maven:sebastrnlib-709936:4431427"
+
 //    modImplementation "curse.maven:create-328085:4835190"
     modImplementation "curse.maven:sophisticated-core-618298:4859678"
     modImplementation "curse.maven:mekanism-268560:4644795"
