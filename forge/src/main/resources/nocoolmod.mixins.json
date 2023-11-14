@@ -1,10 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.chinawaremc.nocoolmod.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "nocoolmod.refmap.json",
+  "package": "io.github.chinawaremc.nocoolmod.mixin.forge",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "RecipeManagerMixin"
   ],
   "client": [
   ],

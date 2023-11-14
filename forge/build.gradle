@@ -1,0 +1,143 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+loom {
+    forge {
+        mixinConfig "nocoolmod.mixins.json"
+    }
+}
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    modImplementation "mezz.jei:jei-1.19.2-common-api:11.6.0.1018"
+    modImplementation "mezz.jei:jei-1.19.2-forge:11.6.0.1018"
+    modImplementation "mezz.jei:jei-1.19.2-forge-api:11.6.0.1018"
+    modImplementation "com.simibubi.create:create-1.19.2:0.5.1.f-46:slim"
+    modImplementation "com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.10-20"
+    modImplementation "com.tterrag.registrate:Registrate:MC1.19-1.1.5"
+    modImplementation "plus.dragons.createdragonlib:create_dragon_lib-1.19.2:1.2.3"
+    modImplementation "curse.maven:placebo-283644:4759853"
+    modImplementation "curse.maven:polylib-576589:4486955"
+    modImplementation "curse.maven:sebastrnlib-709936:4431427"
+//    modImplementation "curse.maven:create-328085:4835190"
+    modImplementation "curse.maven:sophisticated-core-618298:4859678"
+    modImplementation "curse.maven:mekanism-268560:4644795"
+    modImplementation "curse.maven:pipez-443900:4713644"
+    modImplementation "curse.maven:apotheosis-313970:4730358"
+    modImplementation "curse.maven:geckolib-388172:4407241"
+    modImplementation "curse.maven:patchouli-306770:4031402"
+    modImplementation "curse.maven:curios-309927:4834339"
+    modImplementation "curse.maven:lucent-493280:4085139"
+    modImplementation "curse.maven:balm-531761:4751735"
+    modImplementation "curse.maven:chalk-533748:4827982"
+    modImplementation "curse.maven:titanium-287342:4786622"
+    modImplementation "curse.maven:industrial-foregoing-266515:4459182"
+    modImplementation "curse.maven:openblocks-elevator-250832:4859577"
+    modImplementation "curse.maven:framework-549225:4718247"
+    modImplementation "curse.maven:evilcraft-74610:4791844"
+    modImplementation "curse.maven:libx-412525:4052778"
+    modImplementation "curse.maven:forgiving-void-271009:3833506"
+    modImplementation "curse.maven:skyblock-builder-446691:4793674"
+    modImplementation "curse.maven:integrated-dynamics-236307:4791809"
+    modImplementation "curse.maven:common-capabilities-247007:4391413"
+    modImplementation "curse.maven:cyclops-core-232758:4808713"
+    modImplementation "curse.maven:immersive-engineering-231951:4780537"
+    modImplementation "curse.maven:primal-magick-545271:3984526"
+    modImplementation "curse.maven:backpacked-352835:4725664"
+    modImplementation "curse.maven:identity-391390:4399470"
+    modImplementation "curse.maven:aquaculture-60028:4074684"
+    modImplementation "curse.maven:createaddition-439890:4767406"
+    modImplementation "curse.maven:cccbridge-656214:4632363"
+    modImplementation "curse.maven:create-enchantment-industry-688768:4836885"
+    modImplementation "curse.maven:cc-tweaked-282001:4630524"
+    modImplementation "curse.maven:create-diesel-generators-869316:4861948"
+    modImplementation "curse.maven:natures-aura-306626:4613484"
+    modImplementation "curse.maven:time-in-a-bottle-standalone-445025:3879896"
+    modImplementation "curse.maven:sophisticated-storage-619320:4859702"
+    modImplementation "curse.maven:sophisticated-backpacks-422301:4859686"
+    modImplementation "curse.maven:scriptor-magicae-817436:4549561"
+    modImplementation "curse.maven:more-crafting-tables-for-forge-417365:4777739"
+    modImplementation "curse.maven:create-ender-transmission-737302:4681884"
+    modImplementation "curse.maven:touhou-little-maid-355044:4861330"
+    modImplementation "curse.maven:ore-tree-reborn-557194:4062292"
+    modImplementation "curse.maven:ftb-backups-2-622737:4834398"
+    modImplementation "curse.maven:ftb-ultimine-forge-386134:4598468"
+    modImplementation "curse.maven:ftb-chunks-forge-314906:4727833"
+    modImplementation "curse.maven:ftb-teams-forge-404468:4611938"
+    modImplementation "curse.maven:ftb-library-forge-404465:4661834"
+    modImplementation "curse.maven:item-filters-309674:4553326"
+    modImplementation "curse.maven:hostile-neural-networks-552574:4654510"
+    modImplementation "curse.maven:refined-cooking-543972:4110182"
+    modImplementation "curse.maven:cooking-for-blockheads-231484:4749423"
+    modImplementation "curse.maven:refined-storage-243076:4861827"
+    modImplementation "curse.maven:hardcore-torches-forge-576846:4676485"
+    modImplementation "curse.maven:create-mechanical-extruder-686100:4763416"
+    modImplementation "curse.maven:create-mechanical-spawner-821828:4763424"
+    modImplementation "curse.maven:sleeping-bags-384485:3920735"
+    modImplementation "curse.maven:mahou-tsukai-342543:4746888"
+    modImplementation "curse.maven:ars-nouveau-401955:4809720"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier.set("dev-shadow")
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    dependsOn shadowJar
+    archiveClassifier.set(null)
+}
+
+jar {
+    archiveClassifier.set("dev")
+}
+
+sourcesJar {
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
+
+publishing {
+    publications {
+        mavenForge(MavenPublication) {
+            artifactId = rootProject.archives_base_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}
