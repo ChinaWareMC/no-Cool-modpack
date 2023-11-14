@@ -42,6 +42,10 @@ allprojects {
                 includeGroup "curse.maven"
             }
         }
+        maven {
+            name "CreeperHost"
+            url 'https://maven.creeperhost.net'
+        }
         maven { url 'https://www.jitpack.io' }
         maven { url 'https://maven.tterrag.com/' }
         maven {
@@ -59,6 +63,13 @@ allprojects {
             url = "https://maven.blamejared.com/"
         }
         maven {
+            // Shadows
+            url "https://maven.shadowsoffire.dev/releases"
+            content {
+                includeGroup "dev.shadowsoffire"
+            }
+        }
+        maven {
             // location of a maven mirror for JEI files, as a fallback
             name = "ModMaven"
             url = "https://modmaven.dev"
@@ -66,6 +77,10 @@ allprojects {
         maven {
             name = 'ParchmentMC'
             url = 'https://maven.parchmentmc.org'
+        }
+        maven {
+            name = "Squiddev maven cct"
+            url = 'https://squiddev.cc/maven/'
         }
     }
 
