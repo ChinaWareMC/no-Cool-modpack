@@ -80,7 +80,8 @@ dependencies {
 	// Placebo
 	modImplementation "shadows:Placebo:1.19.2-7.3.3"
 	// Apotheosis
-    modImplementation "shadows:Apotheosis:1.19.2-6.4.0"
+    modImplementation "curse.maven:apotheosis-313970:4730358"
+//    modImplementation "shadows:Apotheosis:1.19.2-6.4.0"
 	
 	// sebastrnlib
     modImplementation "curse.maven:sebastrnlib-709936:4431427"
