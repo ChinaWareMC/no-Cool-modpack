@@ -95,7 +95,7 @@ dependencies {
 	modRuntimeOnly "curse.maven:craftingtweaks-233071:4669914"
 	
 	// sophisticated
-	modImplementation "sophisticatedcore:sophisticatedcore:1.19.2-0.5.103.484"
+	modImplementation("sophisticatedcore:sophisticatedcore:1.19.2-0.5.103.484")
 	
 	// create
 	modImplementation "com.tterrag.registrate:Registrate:MC1.19-1.1.5"
