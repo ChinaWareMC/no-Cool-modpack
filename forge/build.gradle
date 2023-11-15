@@ -23,34 +23,104 @@ configurations {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    // Remove the next line if you don't want to depend on the API
+	/*
+		sebastrnlib:
+			jei 			# linkage
+			patchouli
+		create:
+			Registrate
+			flywheel-forge
+			jei 			# linkage
+			curios-forge 	# linkage
+			cc-tweaked 		# linkage
+		quark:
+			jei				# linkage
+			autoreglib
+		akashic-tome:
+			autoreglib
+		sophisticatedcore:
+			jei 			# linkage
+			craftingtweaks	# linkage
+			balm			# linkage
+			quark			# linkage
+		pipez:
+			jei				# linkage
+			mekanism		# linkage
+			jade			# linkage
+			the-one-probe	# linkage
+		Apotheosis:
+			placebo
+			
+		
+	*/
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    modImplementation "mezz.jei:jei-1.19.2-common-api:11.6.0.1018"
-    modImplementation "mezz.jei:jei-1.19.2-forge:11.6.0.1018"
-    modImplementation "mezz.jei:jei-1.19.2-forge-api:11.6.0.1018"
+	// balm
+	modCompileOnly "net.blay09.mods:balm-forge:4.6.0+1.19.2"
+    modRuntimeOnly "net.blay09.mods:balm-forge:4.6.0+1.19.2"
+	
+	// AutoRegLib
+	modCompileOnly "vazkii.autoreglib:AutoRegLib:1.8.2-55"
+	
+	modCompileOnly "de.maxhenkel.corelib:corelib:1.19.2-1.0.0:api"
+	modRuntimeOnly "de.maxhenkel.corelib:corelib:1.19.2-1.0.0"
+	modRuntimeOnly "de.maxhenkel.corelib:corelib:1.19.2-1.0.0:javadoc"
+	
+	//quark
+	modImplementation "com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.166"
+	modCompileOnly "vazkii.quark:Quark:3.4-418.3200"
+	
+	
+    // jei
+	modCompileOnly "mezz.jei:jei-1.19.2-common-api:11.6.0.1018"
+    modCompileOnly "mezz.jei:jei-1.19.2-forge-api:11.6.0.1018"
+	modRuntimeOnly "mezz.jei:jei-1.19.2-forge:11.6.0.1018"
+	// patchouli
     modCompileOnly "vazkii.patchouli:Patchouli:1.19.3-77:api"
     modRuntimeOnly "vazkii.patchouli:Patchouli:1.19.3-77"
+	// Placebo
+	modImplementation "shadows:Placebo:1.19.2-7.3.3"
+	// Apotheosis
+    modImplementation "shadows:Apotheosis:1.19.2-6.4.0"
+	
+	// sebastrnlib
     modImplementation "curse.maven:sebastrnlib-709936:4431427"
+	// akashic tome
+    modImplementation "curse.maven:akashic-tome-250577:4361115"
+	// curios
+	modCompileOnly "top.theillusivec4.curios:curios-forge:1.19.2-5.1.4.2:api"
+    modRuntimeOnly "top.theillusivec4.curios:curios-forge:1.19.2-5.1.4.2"
+	
+	// craftingtweaks
+	modCompileOnly "curse.maven:craftingtweaks-233071:4669914"
+	modRuntimeOnly "curse.maven:craftingtweaks-233071:4669914"
+	
+	// sophisticated
+	modImplementation "sophisticatedcore:sophisticatedcore:1.19.2-0.5.103.484"
+	
+	// create
+	modImplementation "com.tterrag.registrate:Registrate:MC1.19-1.1.5"
+	modImplementation "com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.10-20"
     modImplementation "com.simibubi.create:create-1.19.2:0.5.1.f-46:slim"
-    modImplementation "com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.10-20"
-    modImplementation "com.tterrag.registrate:Registrate:MC1.19-1.1.5"
+    
     modImplementation "plus.dragons.createdragonlib:create_dragon_lib-1.19.2:1.2.3"
-//    modImplementation "curse.maven:placebo-283644:4759853"
-    modImplementation "shadows:Placebo:1.19.2-7.3.3"
-//    modImplementation "curse.maven:polylib-576589:4486955"
+    
     modImplementation "net.creeperhost:polylib-forge:1900.0.2-build.39"
 
-//    modImplementation "curse.maven:create-328085:4835190"
-    modImplementation "curse.maven:sophisticated-core-618298:4859678"
-    modImplementation "curse.maven:mekanism-268560:4644795"
+	// mekanism
+    modImplementation "mekanism:Mekanism:1.19.2-10.3.9.13"
+	
+	// pipez
     modImplementation "curse.maven:pipez-443900:4713644"
-    modImplementation "curse.maven:apotheosis-313970:4730358"
-    modImplementation "curse.maven:geckolib-388172:4407241"
-//    modImplementation "curse.maven:patchouli-306770:4031402"
+	
+	
+//    modImplementation "curse.maven:geckolib-388172:4407241"
+    modImplementation "software.bernie.geckolib:geckolib-forge-1.19:3.1.40"
 
-    modImplementation "curse.maven:curios-309927:4834339"
-    modImplementation "curse.maven:lucent-493280:4085139"
-    modImplementation "curse.maven:balm-531761:4751735"
+    
+//    modImplementation "curse.maven:lucent-493280:4085139"
+    modImplementation "com.legacy:lucent:1.19.2-1.4.0"
+    
+//    modImplementation "curse.maven:balm-531761:4751735"
     modImplementation "curse.maven:chalk-533748:4827982"
     modImplementation "curse.maven:titanium-287342:4786622"
     modImplementation "curse.maven:industrial-foregoing-266515:4459182"
