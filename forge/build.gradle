@@ -75,8 +75,8 @@ dependencies {
     modCompileOnly "mezz.jei:jei-1.19.2-forge-api:11.6.0.1018"
 	modRuntimeOnly "mezz.jei:jei-1.19.2-forge:11.6.0.1018"
 	// patchouli
-    modCompileOnly "vazkii.patchouli:Patchouli:1.19.3-77:api"
-    modRuntimeOnly "vazkii.patchouli:Patchouli:1.19.3-77"
+    modCompileOnly "vazkii.patchouli:Patchouli:1.19.2-77:api"
+    modRuntimeOnly "vazkii.patchouli:Patchouli:1.19.2-77"
 	// Placebo
 	modImplementation "shadows:Placebo:1.19.2-7.3.3"
 	// Apotheosis
