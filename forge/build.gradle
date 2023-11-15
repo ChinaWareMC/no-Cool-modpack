@@ -59,7 +59,7 @@ dependencies {
     modRuntimeOnly "net.blay09.mods:balm-forge:4.6.0+1.19.2"
 	
 	// AutoRegLib
-	modCompileOnly "vazkii.autoreglib:AutoRegLib:1.8.2-55-124"
+//	modCompileOnly "vazkii.autoreglib:AutoRegLib:1.8.2-55-124"
 	
 	modCompileOnly "de.maxhenkel.corelib:corelib:1.19.2-1.0.0:api"
 	modRuntimeOnly "de.maxhenkel.corelib:corelib:1.19.2-1.0.0"
