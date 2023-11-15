@@ -86,7 +86,7 @@ dependencies {
 	// sebastrnlib
     modImplementation "curse.maven:sebastrnlib-709936:4431427"
 	// akashic tome
-    modImplementation "curse.maven:akashic-tome-250577:4361115"
+//    modImplementation "curse.maven:akashic-tome-250577:4361115"
 	// curios
 	modCompileOnly "top.theillusivec4.curios:curios-forge:1.19.2-5.1.4.2:api"
     modRuntimeOnly "top.theillusivec4.curios:curios-forge:1.19.2-5.1.4.2"
@@ -147,8 +147,8 @@ dependencies {
     modImplementation "curse.maven:create-diesel-generators-869316:4861948"
     modImplementation "curse.maven:natures-aura-306626:4613484"
     modImplementation "curse.maven:time-in-a-bottle-standalone-445025:3879896"
-    modImplementation "curse.maven:sophisticated-storage-619320:4859702"
-    modImplementation "curse.maven:sophisticated-backpacks-422301:4859686"
+//    modImplementation "curse.maven:sophisticated-storage-619320:4859702"
+//    modImplementation "curse.maven:sophisticated-backpacks-422301:4859686"
     modImplementation "curse.maven:scriptor-magicae-817436:4549561"
     modImplementation "curse.maven:more-crafting-tables-for-forge-417365:4777739"
     modImplementation "curse.maven:create-ender-transmission-737302:4681884"
