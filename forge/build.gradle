@@ -85,6 +85,9 @@ dependencies {
 
 	// sebastrnlib
     modImplementation "curse.maven:sebastrnlib-709936:4431427"
+
+    // compact-machines
+    modImplementation "curse.maven:compact-machines-224218:3907274"
 	// akashic tome
 //    modImplementation "curse.maven:akashic-tome-250577:4361115"
 	// curios

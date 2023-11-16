@@ -77,11 +77,16 @@ public class NocoolmodForge {
 
         if (player.isShiftKeyDown()) {
             Block block = level.getBlockState(pos).getBlock();
-            if (or(block, Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.DIRT_PATH, Blocks.ROOTED_DIRT)) {
-
-                if (
-                        rightClientGetOutput(100, player, pos, quarterDirt.get(), 100)
-                ) event.setCanceled(true);
+            if (
+                    or(block,
+                            Blocks.GRASS_BLOCK,
+                            Blocks.DIRT,
+                            Blocks.COARSE_DIRT,
+                            Blocks.DIRT_PATH,
+                            Blocks.ROOTED_DIRT
+                    )
+            ) {
+                rightClientGetOutput(100, player, pos, quarterDirt.get(), 100);
             }
         }
     }
@@ -90,9 +95,10 @@ public class NocoolmodForge {
         return player.getMainHandItem().getItem() instanceof BlockItem || player.getOffhandItem().getItem() instanceof BlockItem;
     }
 
-    private static boolean rightClientGetOutput(int bound, Player player, BlockPos pos, Item item, int mod) {
+    @SuppressWarnings("SameParameterValue")
+    private static void rightClientGetOutput(int bound, Player player, BlockPos pos, Item item, int mod) {
         if (canPlaceBlock(player)) {
-            return true;
+            return;
         }
         BlockPos tPos = randomGenPos(bound, pos, mod);
         if (tPos != null) {
@@ -100,7 +106,6 @@ public class NocoolmodForge {
             itemEntity.setDefaultPickUpDelay();
             player.level.addFreshEntity(itemEntity);
         }
-        return false;
     }
 
     @Nullable
