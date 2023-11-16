@@ -4,6 +4,7 @@
   "package": "io.github.chinawaremc.nocoolmod.mixin.forge",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BackConfigMixin",
     "BackpackMixin",
     "RecipeManagerMixin",
     "ShapedRecipeMixin"
