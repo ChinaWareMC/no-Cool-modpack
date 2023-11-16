@@ -23,6 +23,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -62,6 +63,12 @@ public class NocoolmodForge {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    public static boolean or(Block block, Block... eqBlocks) {
+        boolean b = true;
+        for (Block eqBlock : eqBlocks) b &= block.equals(eqBlock);
+        return b;
+    }
+
     @SubscribeEvent
     public void rightClientBlock(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
@@ -69,27 +76,34 @@ public class NocoolmodForge {
         Level level = event.getLevel();
         if (player.isShiftKeyDown()) {
             Block block = level.getBlockState(pos).getBlock();
-            if (block.equals(Blocks.GRASS_BLOCK) || block.equals(Blocks.DIRT)) {
-                int i = new Random().nextInt(10);
-                BlockPos tPos = switch (i) {
-                    case 0 -> pos.above();
-                    case 1 -> pos.below();
-                    case 2 -> pos.east();
-                    case 3 -> pos.west();
-                    case 4 -> pos.north();
-                    case 5 -> pos.south();
-                    default -> null;
-                };
-                if (tPos != null) {
-                    ItemEntity itemEntity = new ItemEntity(player.getLevel(), tPos.getX(), tPos.getY(), tPos.getZ(), new ItemStack(quarterDirt.get()));
-                    itemEntity.setDefaultPickUpDelay();
-                    player.level.addFreshEntity(itemEntity);
-                }
+            if (or(block, Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.DIRT_PATH, Blocks.ROOTED_DIRT)) {
+                rightClientGetOutput(10, player, pos, quarterDirt.get());
             }
         }
-
     }
 
+    private static void rightClientGetOutput(int bound, Player player, BlockPos pos, Item item) {
+        BlockPos tPos = randomGenPos(bound, pos);
+        if (tPos != null) {
+            ItemEntity itemEntity = new ItemEntity(player.getLevel(), tPos.getX(), tPos.getY(), tPos.getZ(), new ItemStack(item));
+            itemEntity.setDefaultPickUpDelay();
+            player.level.addFreshEntity(itemEntity);
+        }
+    }
+
+    @Nullable
+    private static BlockPos randomGenPos(int bound, BlockPos pos) {
+        int i = new Random().nextInt(bound);
+        return switch (i) {
+            case 0 -> pos.above();
+            case 1 -> pos.below();
+            case 2 -> pos.east();
+            case 3 -> pos.west();
+            case 4 -> pos.north();
+            case 5 -> pos.south();
+            default -> null;
+        };
+    }
 
 
 }
