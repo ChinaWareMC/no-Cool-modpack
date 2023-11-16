@@ -74,33 +74,45 @@ public class NocoolmodForge {
         Player player = event.getEntity();
         BlockPos pos = event.getPos();
         Level level = event.getLevel();
+
         if (player.isShiftKeyDown()) {
             Block block = level.getBlockState(pos).getBlock();
             if (or(block, Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.DIRT_PATH, Blocks.ROOTED_DIRT)) {
-                rightClientGetOutput(10, player, pos, quarterDirt.get());
+
+                if (
+                        rightClientGetOutput(100, player, pos, quarterDirt.get(), 100)
+                ) event.setCanceled(true);
             }
         }
     }
 
-    private static void rightClientGetOutput(int bound, Player player, BlockPos pos, Item item) {
-        BlockPos tPos = randomGenPos(bound, pos);
+    private static boolean canPlaceBlock(Player player) {
+        return player.getMainHandItem().getItem() instanceof BlockItem || player.getOffhandItem().getItem() instanceof BlockItem;
+    }
+
+    private static boolean rightClientGetOutput(int bound, Player player, BlockPos pos, Item item, int mod) {
+        if (canPlaceBlock(player)) {
+            return true;
+        }
+        BlockPos tPos = randomGenPos(bound, pos, mod);
         if (tPos != null) {
             ItemEntity itemEntity = new ItemEntity(player.getLevel(), tPos.getX(), tPos.getY(), tPos.getZ(), new ItemStack(item));
             itemEntity.setDefaultPickUpDelay();
             player.level.addFreshEntity(itemEntity);
         }
+        return false;
     }
 
     @Nullable
-    private static BlockPos randomGenPos(int bound, BlockPos pos) {
+    private static BlockPos randomGenPos(int bound, BlockPos pos, int mod) {
         int i = new Random().nextInt(bound);
-        return switch (i) {
-            case 0 -> pos.above();
-            case 1 -> pos.below();
-            case 2 -> pos.east();
-            case 3 -> pos.west();
-            case 4 -> pos.north();
-            case 5 -> pos.south();
+        return switch (i % mod) {
+            case 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 -> pos.above();
+            case 1, 11, 21, 31, 41, 51, 61, 71, 81, 91 -> pos.below();
+            case 2, 12, 22, 32, 42, 52, 62, 72, 82, 92 -> pos.east();
+            case 3, 13, 23, 33, 43, 53, 63, 73, 83, 93 -> pos.west();
+            case 4, 14, 24, 34, 44, 54, 64, 74, 84, 94 -> pos.north();
+            case 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 -> pos.south();
             default -> null;
         };
     }
