@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 
 @Mixin(RecipeManager.class)
+@Debug(export = true)
 public class RecipeManagerMixin {
     @Shadow @Final private static Logger LOGGER;
 
@@ -43,11 +45,12 @@ public class RecipeManagerMixin {
         });
     }
 
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Inject(
             method = "fromJson(Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;Lnet/minecraftforge/common/crafting/conditions/ICondition$IContext;)Lnet/minecraft/world/item/crafting/Recipe;",
             at = @At(value = "RETURN"),
-            cancellable = true)
+            cancellable = true,
+            remap = false
+    )
     private static void fromJson(ResourceLocation arg, JsonObject jsonObject, ICondition.IContext context, CallbackInfoReturnable<Recipe<?>> cir) {
         Recipe<?> returnValue = cir.getReturnValue();
         if (arg.getNamespace().equals(NocoolmodForge.modid)) {
