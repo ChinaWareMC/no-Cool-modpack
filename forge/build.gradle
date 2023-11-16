@@ -69,6 +69,8 @@ dependencies {
 	modImplementation "com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.166"
     modImplementation "vazkii.quark:Quark:3.4-418.3200"
 
+    modImplementation "appeng:appliedenergistics2-forge:12.9.8"
+//    modImplementation 'com.github.Technici4n:AE2Things-Forge:1.1.1'
 
     // jei
     modCompileOnly "mezz.jei:jei-1.19.2-common-api:11.6.0.1018"
@@ -81,6 +83,8 @@ dependencies {
 	modImplementation "shadows:Placebo:1.19.2-7.3.3"
 	// Apotheosis
     modImplementation "curse.maven:apotheosis-313970:4730358"
+
+//    modImplementation "curse.maven:ae2-things-forge-609977:4367610"
 //    modImplementation "shadows:Apotheosis:1.19.2-6.4.0"
 
 	// sebastrnlib
