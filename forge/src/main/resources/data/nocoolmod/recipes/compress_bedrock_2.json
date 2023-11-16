@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "nocoolmod:bedrock_compressx1"
+    }
+  },
+  "result": {
+    "item": "nocoolmod:bedrock_compressx2"
+  }
+}

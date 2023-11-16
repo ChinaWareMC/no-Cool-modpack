@@ -1,6 +1,7 @@
 package io.github.chinawaremc.nocoolmod.mixin.forge;
 
 import com.google.gson.JsonElement;
+import io.github.chinawaremc.nocoolmod.forge.NocoolmodForge;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(RecipeManager.class)
@@ -27,8 +29,9 @@ public class RecipeManagerMixin {
                        ResourceManager resourceManager,
                        ProfilerFiller profiler,
                        CallbackInfo ci) {
+        object.entrySet().removeIf(resourceLocationJsonElementEntry -> !resourceLocationJsonElementEntry.getKey().getNamespace().equals(NocoolmodForge.modid));
         object.forEach((resourceLocation, jsonElement) -> {
-            LOGGER.warn( "baka4n-test" + resourceLocation);
+            LOGGER.warn("baka4n-test" + resourceLocation);
         });
     }
 }
