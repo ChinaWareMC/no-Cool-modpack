@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XAX",
+    "XXX"
+  ],
+  "key": {
+    "A": {
+      "item": "nocoolmod:quarter_dirt"
+    },
+    "X": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "item": "backpacked:backpack"
+  }
+}
