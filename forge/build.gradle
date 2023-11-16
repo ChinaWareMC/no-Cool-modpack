@@ -89,7 +89,7 @@ dependencies {
 
 	// sebastrnlib
     modImplementation "curse.maven:sebastrnlib-709936:4431427"
-    modImplementation "curse.maven:applied-cooking-689579:4110311"
+//    modImplementation "curse.maven:applied-cooking-689579:4110311"
 
     // compact-machines
     modImplementation "curse.maven:compact-machines-224218:3907274"
