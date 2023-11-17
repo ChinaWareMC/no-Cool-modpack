@@ -14,12 +14,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,8 +55,8 @@ public class NocoolmodForge {
     public static ResourceLocation id(String name) {
         return new ResourceLocation(modid, name);
     }
-    //玩梗计划 -> 42号混凝土 与意大利面
-    //沃尔玛购物袋
+    //玩梗计划 -> 42号混凝土 与意大利面， 沃尔玛购物袋
+    //沃尔玛购物袋 被攻击时，攻击者会弹出一条消息，这个消息有三个选项，男，女，沃尔玛购物袋，你怎么能定义我的性别。在说出正确选项前你不可被攻击
 
     static {
 
@@ -104,59 +102,6 @@ public class NocoolmodForge {
             return;
         }
         RightClientRandom.init((ServerPlayer) player, pos, level);
-//        if (player.isShiftKeyDown()) {
-//            Block block = level.getBlockState(pos).getBlock();
-//            if (
-//                    or(block,
-//                            Blocks.GRASS_BLOCK,
-//                            Blocks.DIRT,
-//                            Blocks.COARSE_DIRT,
-//                            Blocks.DIRT_PATH,
-//                            Blocks.ROOTED_DIRT
-//                    )
-//            ) {
-//                rightClientGetOutput(100, (ServerPlayer) player, pos, quarterDirt.get(), 100);// 60% get quarter Dirt
-//            }
-//        }
-    }
-
-    private static boolean canPlaceBlock(ServerPlayer player) {
-        return player.getMainHandItem().getItem() instanceof BlockItem || player.getOffhandItem().getItem() instanceof BlockItem;
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private static void rightClientGetOutput(int bound, ServerPlayer player, BlockPos pos, Item item, int mod) {
-        if (canPlaceBlock(player)) {
-            return;
-        }
-        BlockPos tPos = randomGenPos(bound, pos, mod);
-        if (tPos != null) {
-            if (player.getMainHandItem().is(item) && new Random().nextBoolean()) {
-                dropItem(player, item, tPos);// If you have it yourself, then you may be doubly happy.
-            }
-            dropItem(player, item, tPos);
-        }
-    }
-
-    private static void dropItem(ServerPlayer player, Item item, BlockPos tPos) {
-        ItemEntity itemEntity = new ItemEntity(player.getLevel(), tPos.getX(), tPos.getY(), tPos.getZ(), new ItemStack(item));
-        itemEntity.setDefaultPickUpDelay();
-        player.level.addFreshEntity(itemEntity);
-        PlayerAdvancements advancements = player.getAdvancements();
-    }
-
-    @Nullable
-    private static BlockPos randomGenPos(int bound, BlockPos pos, int mod) {
-        int i = new Random().nextInt(bound);
-        return switch (i % mod) {
-            case 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 -> pos.above();
-            case 1, 11, 21, 31, 41, 51, 61, 71, 81, 91 -> pos.below();
-            case 2, 12, 22, 32, 42, 52, 62, 72, 82, 92 -> pos.east();
-            case 3, 13, 23, 33, 43, 53, 63, 73, 83, 93 -> pos.west();
-            case 4, 14, 24, 34, 44, 54, 64, 74, 84, 94 -> pos.north();
-            case 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 -> pos.south();
-            default -> null;
-        };
     }
 
     @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = NocoolmodForge.modid)

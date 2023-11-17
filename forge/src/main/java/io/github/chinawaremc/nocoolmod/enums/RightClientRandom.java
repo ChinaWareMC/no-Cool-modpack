@@ -14,9 +14,12 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.Random;
 
+import static io.github.chinawaremc.nocoolmod.forge.NocoolmodForge.*;
+import static net.minecraft.world.level.block.Blocks.*;
+
 public enum RightClientRandom {
-    rightDirt(0.6, NocoolmodForge.quarterDirt.get(), true, true,
-            Blocks.DIRT, Blocks.DIRT_PATH, Blocks.ROOTED_DIRT, Blocks.COARSE_DIRT),
+    rightDirt(0.6, quarterDirt.get(), true, true,
+            DIRT, DIRT_PATH, ROOTED_DIRT, COARSE_DIRT, GRASS_BLOCK),
     ;
     private final double percentage;
     private final Item item;
