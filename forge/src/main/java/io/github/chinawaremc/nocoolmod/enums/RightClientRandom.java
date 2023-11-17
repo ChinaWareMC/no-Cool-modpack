@@ -1,5 +1,6 @@
 package io.github.chinawaremc.nocoolmod.enums;
 
+import io.github.chinawaremc.nocoolmod.forge.NocoolmodForge;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.PlayerAdvancements;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,24 +8,50 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Random;
-@Deprecated
+
 public enum RightClientRandom {
+    rightDirt(0.6, NocoolmodForge.quarterDirt.get(), true, true,
+            Blocks.DIRT, Blocks.DIRT_PATH, Blocks.ROOTED_DIRT, Blocks.COARSE_DIRT),
     ;
     private final double percentage;
     private final Item item;
-    private final boolean isShift;
+    private final boolean isShift, isAnd;
+    private final Block[] checkBlocks;
 
-    RightClientRandom(double percentage, Item item, boolean isShift) {
+    RightClientRandom(double percentage, Item item, boolean isShift, boolean isAnd, Block... items) {
         this.percentage = percentage;
         this.item = item;
         this.isShift = isShift;
+        checkBlocks = items;
+        this.isAnd = isAnd;
     }
 
-    public static void init() {
+    public static void init(ServerPlayer player, BlockPos pos, Level level) {
+        boolean sneak = player.isShiftKeyDown();
+        Block block = level.getBlockState(pos).getBlock();
+        RightClientRandom random = null;
+        for (RightClientRandom value : values()) {
+            if (or(block, value.checkBlocks)) {
+                random = value;
+                break;
+            }
+        }
+        if (random != null) {
+            if ((random.isShift && !sneak) || (!random.isShift && sneak)) {
+                return;
+            }
+            rightClientGetOutput(random.percentage, player, pos, random.item, random.isAnd);
+        }
 
+    }
+
+    public static Random random(long seed) {
+        return new Random(System.nanoTime() ^ seed);
     }
 
     private static void rightClientGetOutput(double percentage, ServerPlayer player, BlockPos pos, Item item, boolean isAnd) {
@@ -41,12 +68,12 @@ public enum RightClientRandom {
     }
 
     public static boolean getRandom(double percentage, boolean isAnd) {
-        double v = new Random(256).nextDouble();
+        double v = random(256).nextDouble();
         return isAnd ? v <= percentage : v < percentage;
     }
 
     public static boolean isDouble() {
-        return new Random(1024).nextBoolean();
+        return random(1024).nextBoolean();
     }
 
     public static boolean or(Block block, Block... eqBlocks) {

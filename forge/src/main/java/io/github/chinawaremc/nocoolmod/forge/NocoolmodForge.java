@@ -3,6 +3,7 @@ package io.github.chinawaremc.nocoolmod.forge;
 
 import com.mrcrayfish.backpacked.Backpacked;
 import com.mrcrayfish.backpacked.core.ModItems;
+import io.github.chinawaremc.nocoolmod.enums.RightClientRandom;
 import io.github.chinawaremc.nocoolmod.group.ModGroups;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -99,23 +100,24 @@ public class NocoolmodForge {
         Player player = event.getEntity();
         BlockPos pos = event.getPos();
         Level level = event.getLevel();
-        if (player.level.isClientSide) {
+        if (level.isClientSide) {
             return;
         }
-        if (player.isShiftKeyDown()) {
-            Block block = level.getBlockState(pos).getBlock();
-            if (
-                    or(block,
-                            Blocks.GRASS_BLOCK,
-                            Blocks.DIRT,
-                            Blocks.COARSE_DIRT,
-                            Blocks.DIRT_PATH,
-                            Blocks.ROOTED_DIRT
-                    )
-            ) {
-                rightClientGetOutput(100, (ServerPlayer) player, pos, quarterDirt.get(), 100);// 60% get quarter Dirt
-            }
-        }
+        RightClientRandom.init((ServerPlayer) player, pos, level);
+//        if (player.isShiftKeyDown()) {
+//            Block block = level.getBlockState(pos).getBlock();
+//            if (
+//                    or(block,
+//                            Blocks.GRASS_BLOCK,
+//                            Blocks.DIRT,
+//                            Blocks.COARSE_DIRT,
+//                            Blocks.DIRT_PATH,
+//                            Blocks.ROOTED_DIRT
+//                    )
+//            ) {
+//                rightClientGetOutput(100, (ServerPlayer) player, pos, quarterDirt.get(), 100);// 60% get quarter Dirt
+//            }
+//        }
     }
 
     private static boolean canPlaceBlock(ServerPlayer player) {
