@@ -3,9 +3,11 @@ package io.github.chinawaremc.nocoolmod.forge;
 
 import com.mrcrayfish.backpacked.Backpacked;
 import com.mrcrayfish.backpacked.core.ModItems;
+import io.github.chinawaremc.nocoolmod.group.ModGroups;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.PlayerAdvancements;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -14,14 +16,12 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -49,8 +49,13 @@ public class NocoolmodForge {
     public static final RegistryObject<BlockItem> bedrock_compressx2_item;
     public static final RegistryObject<BlockItem> bedrock_compressx3_item;
     public static final RegistryObject<BlockItem> bedrock_compressx4_item;
+    public static final RegistryObject<Item> dirtStick;
 
     public static final RegistryObject<Item> quarterDirt;
+
+    public static ResourceLocation id(String name) {
+        return new ResourceLocation(modid, name);
+    }
     //玩梗计划 -> 42号混凝土 与意大利面
     //沃尔玛购物袋
 
@@ -58,15 +63,20 @@ public class NocoolmodForge {
 
         blocks = DeferredRegister.create(ForgeRegistries.BLOCKS, modid);
         items = DeferredRegister.create(ForgeRegistries.ITEMS, modid);
-        quarterDirt = items.register("quarter_dirt", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+        new ModGroups(id("basic"));
+        new ModGroups(id("finale"));
+        ModGroups basic = ModGroups.groups.get("basic");
+        ModGroups finale = ModGroups.groups.get("finale");
+        dirtStick = items.register("dirt_stick", () -> new Item(new Item.Properties().tab(basic)));
+        quarterDirt = items.register("quarter_dirt", () -> new Item(new Item.Properties().tab(basic)));
         bedrock_compressx1 = blocks.register("bedrock_compressx1", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn((arg, arg2, arg3, object) -> false)));
         bedrock_compressx2 = blocks.register("bedrock_compressx2", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn((arg, arg2, arg3, object) -> false)));
         bedrock_compressx3 = blocks.register("bedrock_compressx3", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn((arg, arg2, arg3, object) -> false)));
         bedrock_compressx4 = blocks.register("bedrock_compressx4", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn((arg, arg2, arg3, object) -> false)));
-        bedrock_compressx1_item = items.register(bedrock_compressx1.getId().getPath(), () -> new BlockItem(bedrock_compressx1.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-        bedrock_compressx2_item = items.register(bedrock_compressx2.getId().getPath(), () -> new BlockItem(bedrock_compressx2.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-        bedrock_compressx3_item = items.register(bedrock_compressx3.getId().getPath(), () -> new BlockItem(bedrock_compressx3.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-        bedrock_compressx4_item = items.register(bedrock_compressx4.getId().getPath(), () -> new BlockItem(bedrock_compressx4.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+        bedrock_compressx1_item = items.register(bedrock_compressx1.getId().getPath(), () -> new BlockItem(bedrock_compressx1.get(), new Item.Properties().tab(finale)));
+        bedrock_compressx2_item = items.register(bedrock_compressx2.getId().getPath(), () -> new BlockItem(bedrock_compressx2.get(), new Item.Properties().tab(finale)));
+        bedrock_compressx3_item = items.register(bedrock_compressx3.getId().getPath(), () -> new BlockItem(bedrock_compressx3.get(), new Item.Properties().tab(finale)));
+        bedrock_compressx4_item = items.register(bedrock_compressx4.getId().getPath(), () -> new BlockItem(bedrock_compressx4.get(), new Item.Properties().tab(finale)));
     }
 
     public NocoolmodForge() {
@@ -119,7 +129,6 @@ public class NocoolmodForge {
         }
         BlockPos tPos = randomGenPos(bound, pos, mod);
         if (tPos != null) {
-
             if (player.getMainHandItem().is(item) && new Random().nextBoolean()) {
                 dropItem(player, item, tPos);// If you have it yourself, then you may be doubly happy.
             }
